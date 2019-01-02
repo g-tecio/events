@@ -1,12 +1,13 @@
 <template>
-	<div>
+	<v-app>
 		<v-toolbar>
 		<v-icon>home</v-icon>
 		<v-toolbar-side-icon></v-toolbar-side-icon>
 		<v-spacer></v-spacer>
 		<v-icon>face</v-icon>
 	</v-toolbar>
-	</div>
+	<nuxt/>
+	</v-app>
 </template>
 
 <script>

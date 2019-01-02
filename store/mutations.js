@@ -1,7 +1,7 @@
 const mutations = {
     get_data(state,api){
-        debugger
-        this.$axios.$get(api, { progress: false }).then((res)=>{console.log(res)})
+        // debugger
+        this.$axios.$get(api, { progress: false }).then((res)=>{return res})
     },
     post_data(state,post){
         debugger
