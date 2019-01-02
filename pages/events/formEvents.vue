@@ -15,11 +15,11 @@
             <v-text-field
                 ref="address1"
                 :rules="[
-                () => !!address || 'This field is required',
-                () => !!address && address.length <= 25 || 'Address must be less than 25 characters',
+                () => !!address1 || 'This field is required',
+                () => !!address1 && address1.length <= 25 || 'Address must be less than 25 characters',
                 addressCheck
                 ]"
-                v-model="address"
+                v-model="address1"
                 label="Address Line 1"
                 counter="25"
                 required
@@ -27,11 +27,11 @@
             <v-text-field
                 ref="address2"
                 :rules="[
-                () => !!address || 'This field is required',
-                () => !!address && address.length <= 25 || 'Address must be less than 25 characters',
+                () => !!address2 || 'This field is required',
+                () => !!address2 && address2.length <= 25 || 'Address must be less than 25 characters',
                 addressCheck
                 ]"
-                v-model="address"
+                v-model="address2"
                 label="Address Line 2"
                 counter="25"
                 required
@@ -47,31 +47,30 @@
                 ref="state"
                 v-model="state"
                 :rules="[() => !!state || 'This field is required']"
-                label="State/Province/Region"
+                label="State / Province / Region"
+                required
+            ></v-text-field>
+            <v-text-field
+                ref="country"
+                v-model="country"
+                :rules="[() => !!country || 'This field is required']"
+                label="Country"
                 required
             ></v-text-field>
             <v-text-field
                 ref="zip"
                 :rules="[() => !!zip || 'This field is required']"
-                v-model="zip"
+                v-model="zip_code"
                 label="ZIP / Postal Code"
                 required
             ></v-text-field>
-            <v-autocomplete
-                ref="country"
-                :rules="[() => !!country || 'This field is required']"
-                :items="countries"
-                v-model="country"
-                label="Country"
-                placeholder="Select..."
-                required
-            ></v-autocomplete>
-
-            <gmap-map
-                :center="{lat:10, lng:10}"
-                :zoom="7"
-
-            ></gmap-map>
+            <v-textarea
+                name="input-7-1"
+                box
+                label="Description"
+                auto-grow
+                v-model="description"
+            ></v-textarea>
             <v-layout align-center justify-space-between row fill-height>
                 <v-flex xs12>
                     <label>Start Date</label>
