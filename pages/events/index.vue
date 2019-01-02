@@ -14,7 +14,7 @@ import components from '../../.nuxt/components/nuxt-link';
         </v-flex>
         <v-flex>
             <v-layout align-center justify-center row>
-                <v-flex xs3> <v-container><v-btn block round color="info"> create</v-btn></v-container></v-flex>                
+                <v-flex xs3> <v-container><v-btn block round color="info" @click="log_data()"> create</v-btn></v-container></v-flex>                
                 <v-flex xs3> <v-container><v-btn block round color="success"> management</v-btn></v-container></v-flex>                
                 <v-flex xs3> <v-container><v-btn block round color="error"> delete</v-btn></v-container></v-flex>
             </v-layout>
@@ -41,25 +41,11 @@ export default {
                         name: 'Event 1',
                         place: 'Stadium one',
                         location: 'one street',
-                        time_event: '17:00hr'
+                        time_event: '17:00hr',
+                        address:{
+                            city:''
+                        }
                     },
-                    {
-                        name: 'Event 2',
-                        place: 'Stadium two',
-                        location: 'two street',
-                        time_event: '17:00hr'
-                    },
-                    {
-                        name: 'Event 3',
-                        place: 'Stadium tree',
-                        location: 'tree street',
-                        time_event: '17:00hr'
-                    },{
-                        name: 'Event 4',
-                        place: 'Stadium four',
-                        location: 'four street',
-                        time_event: '17:00hr'
-                    }
                 ]
             }
         
@@ -69,7 +55,12 @@ export default {
         grid
     },
     mounted(){
-        this.$axios.$get(this.api_url, { progress: false }).then((res)=>{this.data = res})
+        this.$axios.$get(this.api_url, { progress: false }).then((res)=>{this.grid_props.items = res})
+    },
+    methods:{
+        log_data(){
+            console.log(this.grid_props.items)
+        }
     }
 }
 

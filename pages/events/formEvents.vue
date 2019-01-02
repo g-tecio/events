@@ -5,7 +5,7 @@
         <v-card-text>
             <v-text-field
                 ref="name"
-                v-model="name"
+                v-model="formitem.name"
                 :rules="[() => !!name || 'This field is required']"
                 :error-messages="errorMessages"
                 label="Event Title"
@@ -19,7 +19,7 @@
                 () => !!address && address.length <= 25 || 'Address must be less than 25 characters',
                 addressCheck
                 ]"
-                v-model="address"
+                v-model="formitem.address"
                 label="Address Line 1"
                 counter="25"
                 required
@@ -110,7 +110,7 @@
               <span>Refresh form</span>
             </v-tooltip>
           </v-slide-x-reverse-transition>
-          <v-btn color="primary" flat @click="submit">Submit</v-btn>
+          <v-btn color="primary" flat @click="submit_data()">Submit</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -127,7 +127,21 @@
     data () {
       return {
         picker: new Date().toISOString().substr(0, 10),
-        picker2: new Date().toISOString().substr(0, 10)
+        picker2: new Date().toISOString().substr(0, 10),
+        formitem:{
+          name:'',
+          address:{
+            line_address1:'',
+            line_address2:'',
+            
+          },
+
+        }
+      }
+    },
+    methods:{
+      submit_data(){
+        this.$axios.post(this.api_link,this.formitem).then((res)=>{console.log(res.data)})
       }
     }
   }

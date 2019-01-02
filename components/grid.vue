@@ -38,9 +38,16 @@
             ></v-checkbox>
             </td>
             <td>{{ props.item.name }}</td>
-            <td class="text-xs-right">{{ props.item.place }}</td>
-            <td class="text-xs-right">{{ props.item.location }}</td>
-            <td class="text-xs-right">{{ props.item.time_event }}</td>
+            <td class="text-xs-left">
+                City: {{ props.item.address.city}},<br>
+                line_address1: {{ props.item.address.line_address1 }},<br>
+                state: {{ props.item.address.state }}
+            </td>
+            <td class="text-xs-center">
+                latitude: {{ props.item.location.latitude }}, <br>
+                longitude: {{ props.item.location.latitude }}
+            </td>
+            <td class="text-xs-center">{{ props.item.time_zone }}</td>
         </tr>
         </template>
     </v-data-table>
