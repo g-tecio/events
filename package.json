@@ -17,6 +17,7 @@
     "express": "^4.16.3",
     "nuxt": "^2.0.0",
     "vue-resource": "^1.5.1",
+    "vue2-google-maps": "^0.10.5",
     "vuetify": "^1.2.4"
   },
   "devDependencies": {
