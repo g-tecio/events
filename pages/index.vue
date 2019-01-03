@@ -12,12 +12,10 @@
         <vuetify-logo/>
       </div>
       <v-card>
-        <v-card-title class="headline">Welcome to the {{this.$store.state.myname}}</v-card-title>
-        <textarea v-model="name" placeholder="add multiple lines"></textarea>
-        <v-btn @click="change_name()"> change name</v-btn>
-        <v-btn @click="get_data_api()"> get data</v-btn>
-        <v-btn @click="post_data_api()"> POST data</v-btn>
-
+        <v-layout align-center column>
+          <v-card-title class="headline">Welcome to the Events</v-card-title>
+          <v-btn to="/events">Go to Events</v-btn>
+        </v-layout>
       </v-card>
     </v-flex>
   </v-layout>

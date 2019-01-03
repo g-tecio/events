@@ -14,7 +14,7 @@ import components from '../../.nuxt/components/nuxt-link';
         </v-flex>
         <v-flex>
             <v-layout align-center justify-center row>
-                <v-flex xs3> <v-container><v-btn block round color="info" @click="log_data()"> create</v-btn></v-container></v-flex>                
+                <v-flex xs3> <v-container><v-btn block round color="info" to="/events/formEvents"> create</v-btn></v-container></v-flex>                
                 <v-flex xs3> <v-container><v-btn block round color="success"> management</v-btn></v-container></v-flex>                
                 <v-flex xs3> <v-container><v-btn block round color="error"> delete</v-btn></v-container></v-flex>
             </v-layout>
@@ -58,7 +58,7 @@ export default {
         this.$axios.$get(this.api_url, { progress: false }).then((res)=>{this.grid_props.items = res})
     },
     methods:{
-        log_data(){
+        logdata(){
             console.log(this.grid_props.items)
         }
     }

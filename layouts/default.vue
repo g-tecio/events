@@ -1,7 +1,7 @@
 <template>
 	<v-app>
 		<v-toolbar>
-		<v-icon>home</v-icon>
+		<v-btn icon to="/"><v-icon>home</v-icon></v-btn>
 		<v-toolbar-side-icon></v-toolbar-side-icon>
 		<v-spacer></v-spacer>
 		<v-icon>face</v-icon>
