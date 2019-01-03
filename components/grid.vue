@@ -37,7 +37,7 @@
                 hide-details
             ></v-checkbox>
             </td>
-            <td>{{ props.item.name }}</td>
+            <td>{{ props.item.event_name }}</td>
             <td class="text-xs-left">
                 City: {{ props.item.address.city}},<br>
                 line_address1: {{ props.item.address.line_address1 }},<br>
