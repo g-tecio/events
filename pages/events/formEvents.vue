@@ -5,49 +5,49 @@
 				<v-card-text>
 						<v-text-field
 								ref="name"
-								v-model="formitem.name"
+								v-model="eventForm.event_name"
 								label="Event Title"
 								placeholder="Give a short distinct name"
 						></v-text-field>
 						<v-text-field
 								ref="address1"
 								
-								v-model="formitem.address.line_address1"
+								v-model="eventForm.address.line_address1"
 								label="Address Line 1"
 								counter="25"
 						></v-text-field>
 						<v-text-field
 								ref="address2"
 								
-								v-model="formitem.address.line_address2"
+								v-model="eventForm.address.line_address2"
 								label="Address Line 2"
 								counter="25"
 						></v-text-field>
 						<v-text-field
 								ref="city"
-								v-model="formitem.address.city"
+								v-model="eventForm.address.city"
 								label="City"
 						></v-text-field>
 						<v-text-field
 								ref="state"
-								v-model="formitem.address.state"
+								v-model="eventForm.address.state"
 								label="State / Province / Region"
 						></v-text-field>
 						<v-text-field
 								ref="country"
-								v-model="formitem.address.country"
+								v-model="eventForm.address.country"
 								label="Country"
 						></v-text-field>
 						<v-text-field
 								ref="zip"
-								v-model="formitem.address.zip_code"
+								v-model="eventForm.address.zip_code"
 								label="ZIP / Postal Code"
 						></v-text-field>
 						<v-textarea
 								name="input-7-1"
 								box
 								label="Description"
-								v-model="formitem.address.description"
+								v-model="eventForm.address.description"
 						></v-textarea>
 						<v-layout align-center justify-space-between row fill-height>
 								<v-flex xs12>
@@ -55,17 +55,12 @@
 										<br>
 										<input type="date" v-model="picker">
 								</v-flex>
-								<v-flex xs12 class="hidden-xs-only">
-										<label>End Date</label>
-										<br>
-										<input type="date" v-model="picker2">
-								</v-flex>
 						</v-layout>
 
 
 				
 
-						
+		
 				</v-card-text>
 				<v-divider class="mt-5"></v-divider>
 				<v-card-actions>
@@ -104,10 +99,9 @@
 		data () {
 			return {
 				picker: new Date().toISOString().substr(0, 10),
-				picker2: new Date().toISOString().substr(0, 10),
 				api_url: 'https://ox8usqk4cd.execute-api.us-east-2.amazonaws.com/hackathon/events',
-				formitem:{
-					name:'',
+				eventForm:{
+					event_name:'',
 					address:{
 						line_address1:'',
 						line_address2:'',
@@ -115,24 +109,16 @@
 						state: '',
 						country: '',
 						zip_code: '',
-						description: '',
-						venue: 'default',
+						description: ''
 					},
+					venue_name: 'default',
 					capacity: 69,
 					description: 'default',
-					end_date : {
-							day: 'default',
-							formated_date: 'default',
-							month: 'default',
-							time: 'default',
-							time_zone: 'default',
-							year: 'default'
-						},
 					location : {
 							latitude: 69,
 							longitude: 69
 						},
-					start_date : {
+					date : {
 							day: 'default',
 							formated_date: 'default',
 							month: 'default',
@@ -141,16 +127,18 @@
 							year: 'default'
 						},
 					status : 'default',
-					time_zone : 'default',
-					pictures : ['default']
-
+					pictures : ['default'],
+					event_image: 'asd',
+					event_attire: 'asd',
+					event_type: 'asd',
+					revenue_generation: 'asd'
 				}
 			}
 		},
 		methods:{
-			submit_data(){
-				debugger
-				this.$axios.post(this.api_url,this.formitem).then((res)=>{console.log(res)})
+			submit_data() {
+				console.log(this.eventForm);
+				this.$axios.post(this.api_url,this.eventForm).then((res)=>{console.log(res)})
 			}
 		}
 	}
