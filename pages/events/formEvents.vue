@@ -6,12 +6,18 @@
 						<v-text-field
 								ref="name"
 								v-model="eventForm.event_name"
+								:rules="[() => !!eventForm.event_name || 'This field is required']"
+            					:error-messages="errorMessages"
 								label="Event Title"
 								placeholder="Give a short distinct name"
 						></v-text-field>
 						<v-text-field
 								ref="address1"
-								
+								:rules="[
+									() => !!eventForm.address.line_address1 || 'This field is required',
+									() => !!eventForm.address.line_address1 && eventForm.address.line_address1.length <= 25 || 'Address must be less than 25 characters',
+									addressCheck
+								]"
 								v-model="eventForm.address.line_address1"
 								label="Address Line 1"
 								counter="25"
@@ -56,11 +62,12 @@
 										<input type="date" v-model="picker">
 								</v-flex>
 						</v-layout>
-
-
-				
-
-		
+						<label>Choose a Picture</label>
+						<v-text-field prepend-icon="attach_file" single-line
+							v-model="eventForm.event_image" label="Select Image" :required="required"
+							:disabled="disabled" @click.native="onFocus" ref="fileTextField"></v-text-field>
+						<input type="file" :accept="accept" :multiple="false" :disabled="disabled"
+							ref="fileInput" @change="onFileChange">
 				</v-card-text>
 				<v-divider class="mt-5"></v-divider>
 				<v-card-actions>
@@ -127,8 +134,8 @@
 							year: 'default'
 						},
 					status : 'default',
-					pictures : ['default'],
-					event_image: 'asd',
+					pictures : ['asd'],
+					event_image: '',
 					event_attire: 'asd',
 					event_type: 'asd',
 					revenue_generation: 'asd'
@@ -139,7 +146,34 @@
 			submit_data() {
 				console.log(this.eventForm);
 				this.$axios.post(this.api_url,this.eventForm).then((res)=>{console.log(res)})
-			}
+			}, getFormData(files){
+                const data = new FormData();
+                [...files].forEach(file => {
+                    data.append('data', file, file.name); // currently only one file at a time
+                });
+                return data;
+            },
+			onFocus(){
+                if (!this.disabled) {
+                    debugger;
+                    this.$refs.fileInput.click();
+                }
+            },
+            onFileChange($event){
+                const files = $event.target.files || $event.dataTransfer.files;
+                const form = this.getFormData(files);
+                if (files) {
+                    if (files.length > 0) {
+                        this.eventForm.event_image = [...files].map(file => file.name).join(', ');
+                    } else {
+                        this.eventForm.event_image = null;
+                    }
+                } else {
+                    this.eventForm.event_image = $event.target.value.split('\\').pop();
+                }
+                this.$emit('input', this.eventForm.event_image);
+                this.$emit('formData', form);
+            }
 		}
 	}
 </script>
